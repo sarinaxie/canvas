@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block other_js %}
+<script>
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename = 'fe3h.js') }}"></script>
+{% endblock %}
+
+{% block other_css %}
+<style>
+    
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    I want better supports and I want them now
+    <br>
+    FE 3H quote generator (gallery later)
+    <br>
+    You input time, I take screenshot and plop text onto it
+    <br>
+    Plantin is close enough....
+    <br>
+    <a href="https://www.youtube.com/playlist?list=PL6BXJseMN4CreGdVIKa0nHzPgFa3ykpRt">need to split these videos??</a>
+    <br>
+    <a href="http://tetra-cube.com/fea-quote-gen/fea-quote-gen.html">awakening quote generator</a>
+    <br>
+
+    <iframe width="800" height="650" src="https://www.youtube.com/embed/L_-7jrLftjQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <br>
+    <div>            
+    <textarea id="time"></textarea>
+    <button id="submit">Submit</button>
+    </div>
+    <div id="ssdiv">
+        <!-- <img src="{{ url_for('static', filename = 'images/byleth2.png') }}"> -->
+    </div>
+</div>
+{% endblock %}
