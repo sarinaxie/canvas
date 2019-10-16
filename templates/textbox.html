@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block other_js %}
+<script src="{{ url_for('static', filename = 'textbox.js') }}"></script>
+<script>
+var subs = {{subs|tojson}}
+</script>
+{% endblock %}
+
+{% block other_css %}
+<style>
+.word-wrap {word-wrap: break-word;}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div>
+        <label for="submission_textarea">LAURINA I BEG YOU WRITE ME THE CONTENT I DESIRE</label>
+        <textarea class="form-control" id="submission_textarea" rows="3"></textarea>
+        <button id="submit_button" type="submit" class="btn btn-primary btn-sm">Submit</button>
+    </div>
+    
+    <div id="submissions">
+    </div>
+</div>
+{% endblock %}

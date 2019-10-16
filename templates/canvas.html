@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block other_js %}
-<script type="text/javascript" src="{{ url_for('static', filename = 'canvas.js') }}"></script>
+<script src="{{ url_for('static', filename = 'canvas.js') }}"></script>
 <script>
 </script>
 {% endblock %}
@@ -13,7 +13,6 @@
 {% block other_css %}
 <style>
 #sketchpad {
-    float:left;
     height:300px;
     width:400px;
     border:2px solid #888;
@@ -30,25 +29,36 @@
     background: #eee;
     border: 1px solid #888;
 }
+#canvas {
+    padding-top:2em;
+    padding-bottom:1em;
+}
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    <div>
+    <div id ="goals">
+        New goals:<br>
+        Implement drag and drop textboxes on canvas<br>
+        <a href="https://konvajs.org/docs/sandbox/Editable_Text.html">https://konvajs.org/docs/sandbox/Editable_Text.html</a>
+        Handle OCR and cleaning on backend<br>
+    </div>
+
+    <div id="canvas">    
+        <canvas id="sketchpad" height="300" width="400"></canvas>
+        <br>
         <input id="clearbutton" type="submit" value="Clear Sketchpad">
     </div>
-    <div>
-        <canvas id="sketchpad" height="300" width="400">
-        </canvas>
+    
+    <div id="old">
+        old goals:<br>
+        pan on canvas - no best way to do it so do whatever<br>
+        undo<br>
+        add text over picture<br>
+        choose your own picture (link only for now)<br>
+        canvas proportions must change to fit pic<br>
+        save picture (in tutorial)<br>
     </div>
-    <div id ="goals">
-    goals<br>
-    pan on canvas - no best way to do it so do whatever<br>
-    undo<br>
-    add text over picture<br>
-    choose your own picture (link only for now)<br>
-    canvas proportions must change to fit pic<br>
-    save picture (in tutorial)<br></div>
 </div>
 {% endblock %}
