@@ -12,30 +12,56 @@
 
 {% block other_css %}
 <style>
-    
+#vid-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+#video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+input[type=number]{
+    width: 50px;
+} 
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    I want better supports and I want them now
     <br>
-    FE 3H quote generator (gallery later)
+    FE 3H screenshot simulator (gallery later)
     <br>
-    You input time, I take screenshot and plop text onto it
+    User watches video to choose time, inputs time, server cuts frame,
     <br>
-    Plantin is close enough....
+    Canvas containing frame is dynamically added to page at a reasonable size, empty textbox is added to canvas
     <br>
-    <a href="https://www.youtube.com/playlist?list=PL6BXJseMN4CreGdVIKa0nHzPgFa3ykpRt">need to split these videos??</a>
+    User's typed text is added to canvas, text can be displayed at game size or at readable size
+    <br>
+    Bold Garamond/Plantin font is close enough
+    <br>
+    <a href="https://www.youtube.com/playlist?list=PL6BXJseMN4CreGdVIKa0nHzPgFa3ykpRt">need to download and split videos</a>
     <br>
     <a href="http://tetra-cube.com/fea-quote-gen/fea-quote-gen.html">awakening quote generator</a>
     <br>
 
-    <iframe width="800" height="650" src="https://www.youtube.com/embed/L_-7jrLftjQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    <br>
-    <div>            
-    <textarea id="time"></textarea>
-    <button id="submit">Submit</button>
+    <div id="vid-container">
+        <iframe id="video" src="https://www.youtube.com/embed/L_-7jrLftjQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <div>      
+        <select id="dropdown" size=1>
+            <option value="1">Byleth</option>
+            <option value="2">option 2</option>
+        </select>    
+        <div id="time">
+            Min Sec (min/max change depending on video length...after I cut the videos)
+        </div>
+        <button id="submit">Submit</button>
     </div>
     <div id="ssdiv">
         <!-- <img src="{{ url_for('static', filename = 'images/byleth2.png') }}"> -->

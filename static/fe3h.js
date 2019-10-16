@@ -1,9 +1,14 @@
 function parseTime() {
-    return "00:00:18"
+    var min = $("#min").val()
+    var formattedMin = ("0" + min).slice(-2)
+    var sec = $("#sec").val()
+    var formattedSec = ("0" + sec).slice(-2)
+    console.log(formattedMin, formattedSec)
+    return "00:00:08"
 }
 function sendTime() {
     console.log("startcapture")
-    var time=parseTime($("#time").value)
+    var time=parseTime()
     var data_to_save = {"time": time}  
     $.ajax({
         type: "POST",
@@ -26,9 +31,34 @@ function sendTime() {
     })
     }
 
+function selectVideo(){
+    //TODO change if statement to selecting the name of the video file from an array
+    if ($('#dropdown').val() == "2") {
+        var time_select_div = $('<div/>', {
+            id: 'time-select'
+        })
+        var max = '13'
+        var min_input = $('<input/>', {
+            id: 'min',
+            type: 'number',
+            min: '0',
+            max: max
+        })
+        var sec_input = $('<input/>', {
+            id: 'min',
+            type: 'number',
+            min: '0',
+            max: '59'
+        })
+        time_select_div.append(min_input, sec_input)
+        $("#time").append(time_select_div)
+    }
+}
 $(document).ready(function(){
     // vanilla JS:
     // const timeElem = document.getElementById("time");
     // timeElem.addEventListener("click", sendTime, false);
-    $('#time').on("click", sendTime)
+    $('#submit').on("click", sendTime)
+
+    $('#dropdown').on("change", selectVideo)
 })
