@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block other_js %}
+<script src="/static/wipfe3h.js"></script>
+{% endblock %}
+
+{% block other_css %}
+<style>
+/* 55%  for everyone too bad */
+
+#image-canvas {
+    width: 600px;
+    height:337.5px;
+    position: relative;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    Image is displayed as 600px wide but is 768px wide when you save it
+    <br>
+    Open up multiple tabs if you want to work on more than 1 screen at a time
+    <div id="canvas">
+        <canvas id="image-canvas"></canvas>
+    </div>
+
+    <div id="carousel">
+        image carousel
+    </div>
+</div>
+{% endblock %}
