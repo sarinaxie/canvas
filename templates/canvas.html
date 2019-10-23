@@ -4,13 +4,11 @@
 {{title}}
 {% endblock %}
 
-{% block other_js %}
+{% block other_head %}
 <script src="{{ url_for('static', filename = 'canvas.js') }}"></script>
 <script>
 </script>
-{% endblock %}
 
-{% block other_css %}
 <style>
 #sketchpad {
     height:300px;
