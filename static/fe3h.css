@@ -1,6 +1,9 @@
 .container{
     text-align: center;
 }
+#canvas-container {
+    padding-top: 5px;
+}
 #image-canvas {
     width: 600px;
     height:337.5px;
