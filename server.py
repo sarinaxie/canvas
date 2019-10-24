@@ -8,7 +8,8 @@ app = Flask(__name__)
 
 subs = []
 cur_sub_id = 0
-img_fn = ""
+counter = 0
+fname = ""
 
 @app.route('/')
 def home():
@@ -55,19 +56,29 @@ def canvas():
 
 @app.route('/fe3h')
 def fe3h():
-    return render_template('fe3h.html', title='fe3h')
+    return render_template('fe3h.html', title='fe3h', fname=fname)
 
 @app.route('/send_time', methods=['GET', 'POST'])
 def send_time():
-    print("in send time)")
+    global counter
+    global fname
     json_data = request.get_json()
     timestamp = json_data['time']
+
     os.chdir('/mnt/c/Users/Sarina/Documents/websites/me/static/images')
-    subprocess.call('rm byleth.png', shell=True)
-    subprocess.call('ffmpeg -ss 00:00:25 -i /mnt/c/Users/Sarina/Documents/websites/me/byleth_edelgard.mp4 -frames:v 1 byleth.png', shell=True)
-    return jsonify("ok")
+    if counter > 0:
+        old_fname = str(counter-1) + '.png'
+        rm_call = 'rm ' + old_fname
+        subprocess.call(rm_call, shell=True)    
+    fname = str(counter) + '.png'
+    ffmpeg_call = 'ffmpeg -hide_banner -ss ' + timestamp + ' -i /mnt/c/Users/Sarina/Documents/websites/me/byleth_edelgard.mp4 -vf scale=768:-1 -frames:v 1 ' + fname
+    subprocess.call(ffmpeg_call, shell=True)
+    counter += 1
+    return jsonify(fname = fname)
 
-
+@app.route('/wipfe3h')
+def wipfe3h():
+    return render_template('wipfe3h.html', title='wipfe3h')
 
 if __name__ == '__main__':
    app.run(debug = True)

@@ -1,34 +1,26 @@
 var min_max
 
 function selectVideo(){
-    $("#time-select").empty()
-    //TODO change if statement to selecting the name of the video file from an array
-    if ($('#dropdown').val() == "2") {
-        min_max = '13'
-        var min_input = $('<input/>', {
-            id: 'min',
-            type: 'number',
-            min: '0',
-            max: min_max
-        })
-        var sec_input = $('<input/>', {
-            id: 'sec',
-            type: 'number',
-            min: '0',
-            max: '59'
-        })
-        $("#time-select").append(min_input, sec_input)
-        $("#min").val("0")
-        $("#sec").val("0")
+    //change min_max based on video
+    if ($("#dropdown").val() == 1) {
+        min_max = 13
+    } else if ($("#dropdown").val() == 2) {
+        min_max = 13
     }
 }
 
 function parseTime() {
-    var min = $("#min").val()
-    var formattedMin = ("0" + min).slice(-2)
-    var sec = $("#sec").val()
-    var formattedSec = ("0" + sec).slice(-2)
-    return "00:" + formattedMin + ":" + formattedSec
+    var time = $("#time").val()
+    var min_sec = time.split(":")
+    var min = parseInt(min_sec[0])
+    var sec = parseInt(min_sec[1])
+    console.log(min, sec, min_max, min <= min_max, sec <= 59)
+    if (min <= min_max && sec <= 59) {
+        formattedTime = "00:" + ("0" + time).slice(-4)
+        console.log(formattedTime)
+        return formattedTime
+    }
+    return "error"
 }
 function createSS(time) {
     console.log(time)
@@ -120,17 +112,19 @@ function add_canvas(bgSrc){
 }
 
 $(document).ready(function(){
-    $('#submit').on("click", function() {
-            if (parseInt($('#min').val()) <= min_max && parseInt($('#sec').val()) <= 59){
-            console.log('min sec length valid')
-            var time = parseTime()
+    $('#line1').val("This is an FE:3H screenshot simulator.")
+    add_canvas('/static/images/byleth768.png')
+    $('#see-text').on('click', Canvas.Reload)
+    $("#text-size").on('click', changeSize)
+
+    min_max = 13 //default video's max minute
+    $('#dropdown').on("change", selectVideo)
+    $("#submit").on("click", function() {
+        var time = parseTime()
+        if (time != "error") {
             createSS(time)
         } else {
             $('#error-msg').text('not a valid time')
         }
     })
-    $('#dropdown').on("change", selectVideo)
-
-    $('#see-text').on('click', Canvas.Reload)
-    $("#text-size").on('click', changeSize)
 })

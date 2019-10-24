@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block other_head %}
+<script src="{{ url_for('static', filename = 'about.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    Some stuff about my fave FE pairings
+    (not my resume)
+</div>
+{% endblock %}
