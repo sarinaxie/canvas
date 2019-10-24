@@ -18,20 +18,20 @@
 <div class="container">
     <div id="canvas-container">
         <div id="canvas">
-            <canvas id="image-canvas" width="600" height="337.5"></canvas>
+            <canvas id="image-canvas"></canvas>
         </div>
     </div>
     <div id="captions">
-        <div class="cap">Line 1: <input id="line1" class="line"></div>
-        <div class="cap">Line 2: <input id="line2" class="line"></div>
-        <div class="cap">Line 3: <input id="line3" class="line"></div>
+        <div class="cap">Line 1 <input id="line1" class="line"></div>
+        <div class="cap">Line 2 <input id="line2" class="line"></div>
+        <div class="cap">Line 3 <input id="line3" class="line"></div>
     </div>
     <div id="buttons-container">
         <button id="see-text">UPDATE TEXT</button>
-        <button id="text-size">switch to big text</button>
+        <a id="text-size" href="#">switch to large text</a>
     </div>
     <div id="sel-vid">
-        See all supports for: <select id="dropdown" size=1>
+        See all supports for <select id="dropdown" size=1>
             <option value="1">Byleth</option>
             <option value="2">Option 2</option>
         </select>
@@ -39,7 +39,7 @@
     <div id="time-div">
         <div id="error-msg"></div>
         <div id="time-select">
-            Select time for screenshot <i>(ex: 3:14)</i>: <input id="time"/>
+            Time of screenshot <input id="time" placeholder="00:18"/>
             <button id="submit">Submit</button>
         </div>
     </div>

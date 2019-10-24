@@ -14,10 +14,8 @@ function parseTime() {
     var min_sec = time.split(":")
     var min = parseInt(min_sec[0])
     var sec = parseInt(min_sec[1])
-    console.log(min, sec, min_max, min <= min_max, sec <= 59)
     if (min <= min_max && sec <= 59) {
         formattedTime = "00:" + ("0" + time).slice(-4)
-        console.log(formattedTime)
         return formattedTime
     }
     return "error"
@@ -48,20 +46,16 @@ function createSS(time) {
 }
 
 
-const canvasWidth = 768,
-    canvasHeight = 432
 var ctx, backgroundImage, textBox
 
 var Canvas = {
     Reload: function() {
         // Draw the content
-        ctx.drawImage(backgroundImage, 0, 0, canvasWidth, canvasHeight)
-        ctx.drawImage(textBox, 0, 0, canvasWidth, canvasHeight)
+        ctx.drawImage(backgroundImage, 0, 0)
+        ctx.drawImage(backgroundImage, 460, 327, 34, 66, 154, 327, 309, 66)
         Canvas.DrawText()
-        console.log("drew everything")
     },
     DrawText: function() {
-        console.log("drawing stuff")
         line1 = $('#line1').val()
         line2 = $('#line2').val()
         line3 = $('#line3').val()
@@ -82,13 +76,11 @@ function changeSize() {
     if ($('#line3').prop('disabled')) {
         $('#line3').prop('disabled', false)
         $('#text-size').text('switch to big text')
-        console.log("input is now allowed")
         //redraw lines
         Canvas.Reload()
     } else {
         $('#line3').prop('disabled', true)   
         $('#text-size').text('switch to small text')
-        console.log("input has been disabled")     
         //redraw lines
         Canvas.Reload()
     }
@@ -97,14 +89,14 @@ function changeSize() {
 function add_canvas(bgSrc){
     // Get the specific canvas element from the HTML document
     var canvas = $('#image-canvas')[0]
-    canvas.width = canvasWidth
-    canvas.height = canvasHeight
+    canvas.width = 768
+    canvas.height = 432
     ctx = canvas.getContext('2d')
     ctx.fillStyle = "#555049"
 
     //Set the src of all the images we want
     textBox = new Image()
-    textBox.src = "/static/images/textbox_overlay.png"
+    textBox.src = "/static/images/bylethno.png"
     backgroundImage = new Image()
     backgroundImage.src = bgSrc
     //Load all the images onto the canvas
@@ -112,7 +104,7 @@ function add_canvas(bgSrc){
 }
 
 $(document).ready(function(){
-    $('#line1').val("This is an FE:3H screenshot simulator.")
+    $('#line1').val("Absolutely awful.")
     add_canvas('/static/images/byleth768.png')
     $('#see-text').on('click', Canvas.Reload)
     $("#text-size").on('click', changeSize)
