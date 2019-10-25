@@ -95,8 +95,6 @@ function add_canvas(bgSrc){
     ctx.fillStyle = "#555049"
 
     //Set the src of all the images we want
-    textBox = new Image()
-    textBox.src = "/static/images/bylethno.png"
     backgroundImage = new Image()
     backgroundImage.src = bgSrc
     //Load all the images onto the canvas
