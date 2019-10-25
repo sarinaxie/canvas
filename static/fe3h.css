@@ -1,7 +1,7 @@
-/* @font-face {
+@font-face {
     font-family: 'Plantin';
     src: url('/static/Plantin.otf');
-} */
+}
 body {
     background-color:#f2f0e9;
 }
@@ -11,14 +11,16 @@ body {
 }
 #canvas-container {
     padding-top: 3px;
+    max-width: 600px;
+    max-height: 337.5px;
+    margin: 0 auto;
 }
 #image-canvas {
-    width: 600px;
-    height: 337.5px;
+    width: 100%;
 }
 #captions {
     max-width: 450px;
-    display: inline-block;
+    margin: 0 auto;
 }
 .line {
     margin-top: 5px;
