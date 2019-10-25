@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/static/fe3h.css">
 <script>
     var fname = {{fname|tojson}}
+    var vname = {{vname|tojson}}
 </script>
 <script src="/static/fe3h.js"></script>
 <!-- <script src="{{ url_for('static', filename = 'fe3h.js') }}"></script> -->
@@ -28,14 +29,14 @@
     </div>
     <div id="buttons-container">
         <button id="see-text">UPDATE TEXT</button>
-        <a id="text-size" href="#">switch to large text</a>
+        <a id="text-size" href="#!">switch to large text</a>
     </div>
 
 
     <div id="sel-vid">
         See all supports for <select id="dropdown" size=1/>
-            <option value="1">Byleth</option>
-            <option value="2">Option 2</option>
+            <option value="Sylvain">Sylvain</option>
+            <option value="Byleth-Edelgard">Byleth-Edelgard</option>
         </select>
     </div>
     <div id="time-div">
@@ -47,10 +48,15 @@
     </div>
     
 
-    <div id="vid-container">        
+    <div id="vid-container">      
         <img id="transparent" src="data:image/gif;base64,R0lGODlhEAAJAIAAAP///wAAACwAAAAAEAAJAAACCoSPqcvtD6OclBUAOw==" />
-        <iframe id="video" src="https://www.youtube.com/embed/L_-7jrLftjQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe id="video" src="https://www.youtube.com/embed/tUTXN7vXTNI?mute=0&enablejsapi=1"
+            frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div id="overlay"></div>
     </div> 
+    <div id="spoiler-switch"></div>
+    
+    
     
 </div>
 {% endblock %}

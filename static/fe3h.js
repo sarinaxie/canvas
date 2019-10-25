@@ -1,40 +1,54 @@
-var min_max
+var hr_max, min_max, sec_max
 
 function selectVideo(){
-    //change min_max based on video
-    if ($("#dropdown").val() == 1) {
-        min_max = 13
-    } else if ($("#dropdown").val() == 2) {
-        min_max = 13
+    vid = $("#dropdown").val()
+    console.log("vid", vid, vid=="Sylvain", vid=="Byleth-Edelgard")
+    if (vid == "Sylvain") {
+        $('#video').attr('src', "https://www.youtube.com/embed/tUTXN7vXTNI?mute=0&enablejsapi=1")
+        hr_max = 1
+        min_max = 41
+        sec_max = 24
+    } else if (vid == "Byleth-Edelgard") {
+        $('#video').attr('src', "https://www.youtube.com/embed/L_-7jrLftjQ?mute=0&enablejsapi=1")
+        hr_max = 0
+        min_max = 17
+        sec_max = 28
     }
 }
 
 function parseTime() {
     var time = $("#time").val()
     var min_sec = time.split(":")
-    var min = parseInt(min_sec[0])
-    var sec = parseInt(min_sec[1])
-    if (min <= min_max && sec <= 59) {
-        formattedTime = "00:" + ("0" + time).slice(-4)
-        return formattedTime
+    var hr, min, sec
+    if (min_sec.length == 2) {
+        hr = 0
+        min = min_sec[0]
+        sec = min_sec[1]
+    } else {
+        hr = parseInt(min_sec[0])
+        min = parseInt(min_sec[1])
+        sec = parseInt(min_sec[2])
+    }
+    //ex: max is 1:23:45, 1:22:59 = T&&(T||F) and 1:23:45 = T&&(F||T)
+    console.log(hr, min, sec)
+    if (hr <= hr_max && ((min < min_max && sec <= 59) || (min == min_max && sec <= sec_max))) {
+        return time
     }
     return "error"
 }
-function createSS(time) {
-    console.log(time)
-    var data_to_save = {"time": time}  
+function createSS(time, vname) {
+    console.log(time, vname)
+    var data_to_save = {"time": time, "vname": vname}  
     $.ajax({
         type: "POST",
-        url: "send_time",                
+        url: "create_ss",                
         dataType : "json",
         contentType: "application/json; charset=utf-8",
         data : JSON.stringify(data_to_save),
         success: function(result){
-            console.log("about to append image", result["fname"])
+            console.log("about to update image", result["fname"])
             src = '/static/images/' + result["fname"]
             add_canvas(src)
-            // var image = $('<img/>', {id: "screenshot", src: src})
-            // $("#canvas-container").append(image)
         },
         error: function(request, status, error){
             console.log("Error")
@@ -52,6 +66,7 @@ var Canvas = {
     Reload: function() {
         // Draw the content
         ctx.drawImage(backgroundImage, 0, 0)
+        //take image's textbox at edge and transform it to cover the text
         ctx.drawImage(backgroundImage, 460, 327, 34, 66, 154, 327, 309, 66)
         Canvas.DrawText()
     },
@@ -112,9 +127,48 @@ $(document).ready(function(){
     $("#submit").on("click", function() {
         var time = parseTime()
         if (time != "error") {
-            createSS(time)
+            $('#error-msg').empty()
+            createSS(time, $('#dropdown').val())
         } else {
             $('#error-msg').text('not a valid time')
         }
     })
+
+    //on video click, turn anti-spoilers on and add a div for toggling anti-spoiler mode
+    //append <img id="black" src="static/images/justblack.png" /> to #overlay
+
+    function initYT() {
+        var video = new YT.Player('video',
+            {
+                events: {'onStateChange': onPlayerStateChange}
+            }
+        )
+    }
+    $.getScript("//www.youtube.com/player_api", function() {
+        yt_int = setInterval(function(){
+            if(typeof YT === "object"){
+                initYT()
+                clearInterval(yt_int)
+            }
+        },500)
+    })
+    var clicked = 0
+    function onPlayerStateChange(event) {
+        console.log("in on player state change")
+        if (event.data == 1 && clicked == 0) {
+            $('#overlay').html('<img id="black" src="static/images/justblack.png" />')
+            $("#spoiler-switch").html('<a href="#!">hide anti-spoilers bar</a>')
+            clicked = 1
+        }
+    }
+    $("#spoiler-switch").on('click', function() {
+        if ($('#overlay').html().length != 0) {
+            $('#overlay').html('')
+            $("#spoiler-switch").html('<a href="#!">show anti-spoilers bar</a>')
+        } else {
+            $('#overlay').html('<img id="black" src="static/images/justblack.png" />')
+            $("#spoiler-switch").html('<a href="#!">hide anti-spoilers bar</a>')
+        }
+    })
+
 })

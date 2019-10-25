@@ -62,7 +62,18 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 106%;
     border: 0 none;
     padding-top: 10px;
+}
+#black {
+    position: absolute;
+    width: 100%;
+    bottom: 5%;
+    left: 0;
+}
+#spoiler-switch {
+    padding-top: 4%;
+    font-size: .85em;
+    font-style: italic;
 }
