@@ -1,21 +1,46 @@
-var hr_max, min_max, sec_max
+var clicked = 0
+function onPlayerStateChange(event) {
+    console.log("in on player state change")
+    if (event.data == 1 && clicked == 0) {
+        $('#overlay').html('<img id="black" src="static/images/justblack.png" />')
+        $("#spoiler-switch").html('<a href="#!">hide anti-spoilers bar</a>')
+        clicked = 1
+    }
+}
+function initIfLoaded() {
+    yt_int = setInterval(function(){
+        if(typeof YT === "object"){
+            //init the video
+            var video = new YT.Player('video', {events: {'onStateChange': onPlayerStateChange}})
 
+            clearInterval(yt_int)
+        }
+    },500)
+}
+$.getScript("//www.youtube.com/player_api", initIfLoaded)
+
+
+//values of default video
+var hr_max = 1
+var min_max = 41
+var sec_max = 24
 function selectVideo(){
     vid = $("#dropdown").val()
-    console.log("vid", vid, vid=="Sylvain", vid=="Byleth-Edelgard")
+    //console.log("vid", vid)
     if (vid == "Sylvain") {
         $('#video').attr('src', "https://www.youtube.com/embed/tUTXN7vXTNI?mute=0&enablejsapi=1")
         hr_max = 1
         min_max = 41
         sec_max = 24
+        initIfLoaded()
     } else if (vid == "Byleth-Edelgard") {
         $('#video').attr('src', "https://www.youtube.com/embed/L_-7jrLftjQ?mute=0&enablejsapi=1")
         hr_max = 0
         min_max = 17
         sec_max = 28
+        initIfLoaded()
     }
 }
-
 function parseTime() {
     var time = $("#time").val()
     var min_sec = time.split(":")
@@ -61,7 +86,6 @@ function createSS(time, vname) {
 
 
 var ctx, backgroundImage, textBox
-
 var Canvas = {
     Reload: function() {
         // Draw the content
@@ -86,21 +110,6 @@ var Canvas = {
         }
     }
 }
-
-function changeSize() {
-    if ($('#line3').prop('disabled')) {
-        $('#line3').prop('disabled', false)
-        $('#text-size').text('switch to big text')
-        //redraw lines
-        Canvas.Reload()
-    } else {
-        $('#line3').prop('disabled', true)   
-        $('#text-size').text('switch to small text')
-        //redraw lines
-        Canvas.Reload()
-    }
-}
-
 function add_canvas(bgSrc){
     // Get the specific canvas element from the HTML document
     var canvas = $('#image-canvas')[0]
@@ -115,6 +124,20 @@ function add_canvas(bgSrc){
     //Load all the images onto the canvas
     $(backgroundImage).on('load', Canvas.Reload)
 }
+function changeSize() {
+    if ($('#line3').prop('disabled')) {
+        $('#line3').prop('disabled', false)
+        $('#text-size').text('switch to big text')
+        //redraw lines
+        Canvas.Reload()
+    } else {
+        $('#line3').prop('disabled', true)   
+        $('#text-size').text('switch to small text')
+        //redraw lines
+        Canvas.Reload()
+    }
+}
+
 
 $(document).ready(function(){
     $('#line1').val("Absolutely awful.")
@@ -122,8 +145,8 @@ $(document).ready(function(){
     $('#see-text').on('click', Canvas.Reload)
     $("#text-size").on('click', changeSize)
 
-    min_max = 13 //default video's max minute
     $('#dropdown').on("change", selectVideo)
+
     $("#submit").on("click", function() {
         var time = parseTime()
         if (time != "error") {
@@ -135,32 +158,6 @@ $(document).ready(function(){
     })
 
     //on video click, turn anti-spoilers on and add a div for toggling anti-spoiler mode
-    //append <img id="black" src="static/images/justblack.png" /> to #overlay
-
-    function initYT() {
-        var video = new YT.Player('video',
-            {
-                events: {'onStateChange': onPlayerStateChange}
-            }
-        )
-    }
-    $.getScript("//www.youtube.com/player_api", function() {
-        yt_int = setInterval(function(){
-            if(typeof YT === "object"){
-                initYT()
-                clearInterval(yt_int)
-            }
-        },500)
-    })
-    var clicked = 0
-    function onPlayerStateChange(event) {
-        console.log("in on player state change")
-        if (event.data == 1 && clicked == 0) {
-            $('#overlay').html('<img id="black" src="static/images/justblack.png" />')
-            $("#spoiler-switch").html('<a href="#!">hide anti-spoilers bar</a>')
-            clicked = 1
-        }
-    }
     $("#spoiler-switch").on('click', function() {
         if ($('#overlay').html().length != 0) {
             $('#overlay').html('')
