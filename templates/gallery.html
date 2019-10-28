@@ -6,6 +6,18 @@
 
 {% block other_head %}
 <script src="/static/gallery.js"></script>
+<script>
+function deleteSS() {
+}
+
+$(document).ready(function(){
+    console.log("yo")
+    window.addEventListener('beforeunload', function() {
+        
+    console.log("in delete ss")
+    })
+})
+</script>
 {% endblock %}
 
 {% block content %}

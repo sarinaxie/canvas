@@ -1,6 +1,5 @@
 var clicked = 0
 function onPlayerStateChange(event) {
-    console.log("in on player state change")
     if (event.data == 1 && clicked == 0) {
         $('#overlay').html('<img id="black" src="static/images/justblack.png" />')
         $("#spoiler-switch").html('<a href="#!">hide anti-spoilers bar</a>')
@@ -82,6 +81,30 @@ function createSS(time, vname) {
             console.log(error)
         }
     })
+}
+function deleteSS() {
+    //ajax request might not get sent!
+    var bgimg = backgroundImage.src.split("/").slice(-1)[0]
+    console.log("in deleteSS", bgimg)
+    if(bgimg != 'byleth768.png') {
+        var data_to_save = {"del_fname": bgimg}
+        $.ajax({
+            type: "POST",
+            url: "delete_ss",                
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
+            data : JSON.stringify(data_to_save),
+            success: function(){
+                console.log("I don't think I can see this anyway cuz the page was closed")
+            },
+            error: function(request, status, error){
+                console.log("Error")
+                console.log(request)
+                console.log(status)
+                console.log(error)
+            }
+        })
+    }
 }
 
 
@@ -167,5 +190,6 @@ $(document).ready(function(){
             $("#spoiler-switch").html('<a href="#!">hide anti-spoilers bar</a>')
         }
     })
-
+    $(window).on('beforeunload', deleteSS)
+    //window.addEventListener('beforeunload', deleteSS)
 })
