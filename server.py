@@ -17,16 +17,20 @@ v_fpaths = {
 }
 del_fname = ""
 
-@app.route('/about')
+@app.route('/')
+def home():
+    return render_template('home.html', title='Sarina Xie')
+
+@app.route('/fe3h/about')
 def about():
-    return render_template('about.html', title='about')
-@app.route('/gallery')
+    return render_template('about.html', title='About')
+@app.route('/fe3h/gallery')
 def gallery():
-    return render_template('gallery.html', title='gallery')
+    return render_template('gallery.html', title='Gallery')
 
 @app.route('/fe3h')
 def fe3h():
-    return render_template('fe3h.html', title='fe3h', fname=fname, vname=vname, del_fname=del_fname)
+    return render_template('fe3h.html', title='FE3H Screenshot Maker', fname=fname, vname=vname, del_fname=del_fname)
 
 @app.route('/create_ss', methods=['GET', 'POST'])
 def create_ss():

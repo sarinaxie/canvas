@@ -6,10 +6,38 @@
 
 {% block other_head %}
 <script src="/static/about.js"></script>
+
+<style>
+@font-face {
+    font-family: 'Plantin';
+    src: url('/static/Plantin.otf');
+}
+body {
+    background-color:#f2f0e9;
+}
+#about {
+    padding-top: 3%;
+    font-family: Plantin;
+    color: #555049;
+}
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-    Info on how I made the website
+    <div id="about">
+        Born from the desire to give Sylvain less repetitive supports.
+        <br>
+        Thanks to tetra-cube's <a href="http://tetra-cube.com/fea-quote-gen/fea-quote-gen.html">FE:A quote generator</a> for blazing the trail!
+        <br>
+        <br>
+        Feature coming someday, maybe:
+        <br>
+        • Button to save image to make things easier for mobile visitors
+        <br>
+        <br>
+        Visit the <a href="https://github.com/sarinaxie/fe3h">GitHub repository</a> to take a closer look at the site.
+    </div>
+    
 </div>
 {% endblock %}
