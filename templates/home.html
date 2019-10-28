@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+    {% block title %}
+    {{title}}
+    {% endblock %}
+</title>
+    
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<style>
+#home {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+#coming {
+    font-size: 2em;
+}
+#back {
+    padding-top: 20%;
+}
+</style>
+</head>
+
+<body>
+    <div id="home">
+        <div id="coming">
+            Coming soon
+        </div>
+        <div id="back">
+            <a href="/fe3h">Go back to the FE3H screenshot maker</a>
+        </div>
+    </div>
+</body>
+</html>
