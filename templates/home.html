@@ -8,32 +8,86 @@
 </title>
     
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+<link rel="stylesheet" type="text/css" href="/static/home.css">
 <style>
-#home {
-    position: fixed;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+html {
+    height: 100%;
+    border-top: .65em solid #ffe066;
+    border-bottom: .65em solid #ffe066;
 }
-#coming {
-    font-size: 2em;
+body {
+    height: 100%;
+    background-color: #fff5cc;
+    
 }
-#back {
-    padding-top: 20%;
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2em;
+}
+#namerow {
+    padding-top: .3em;
+    font-size: 3em;
+}
+#medesc {
+    font-size: 1.3em;
+    padding-bottom: 1em;
+}
+
+.item {
+    display: inline;
+    font-weight: 700;
+}
+#resume {
+    padding-top:1.2em;
+}
+#projects {
+    padding-top: 1.2em;
 }
 </style>
 </head>
 
 <body>
-    <div id="home">
-        <div id="coming">
-            Coming soon
-        </div>
-        <div id="back">
-            <a href="/fe3h">Go back to the FE3H screenshot maker</a>
-        </div>
+<div class="container">
+    <div id="namerow">
+        SARINA XIE
     </div>
+    <div id="medesc">
+        Fullstack developer building useful and easy to use systems        
+    </div>
+    <div id="designlikes">
+        I like designs that are
+        <div class="item">responsive</div>, 
+        <div class="item">intuitive</div>, and
+        <div class="item">clean.</div>
+    </div>
+    <div id="workinglikes">
+        I like working with
+        <div class="item">databases</div>, 
+        <div class="item">business logic</div>, and
+        <div class="item">people.</div>
+    </div>
+    <div id="resume">
+        <a href="">
+            experience with javascript, react, graphql, sql, python
+            also experienced with java, c, go as my background is in backend programming
+            Resume
+        </a>        
+    </div>
+    <div id="projects">
+        PROJECTS
+    </div>
+    <!-- <div id="nycdesc">
+        nyc feed description
+    </div> -->
+
+    <div id="fe3hdesc">
+        <a href="/fe3h">                        
+            frontend built with javascript and flask, uses youtube api
+            backend built with flask-python, runs script to extract a frame from the video and process it
+            easy to use on mobile as well
+            hosted on aws ec2 instance
+        </a>
+    </div>
+</div>
 </body>
 </html>
