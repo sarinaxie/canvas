@@ -8,12 +8,14 @@
 </title>
     
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/static/home.css">
+<!-- <link rel="stylesheet" type="text/css" href="/static/home.css"> -->
+
+<link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"/>
 <style>
 html {
-    height: 100%;
     border-top: .65em solid #ffe066;
     border-bottom: .65em solid #ffe066;
+    padding-bottom: 8em;
 }
 body {
     height: 100%;
@@ -24,6 +26,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 1.2em;
 }
+
 #namerow {
     padding-top: .3em;
     font-size: 3em;
@@ -32,17 +35,24 @@ body {
     font-size: 1.3em;
     padding-bottom: 1em;
 }
-
 .item {
     display: inline;
     font-weight: 700;
 }
+
 #resume {
     padding-top:1.2em;
 }
+
 #projects {
     padding-top: 1.2em;
     font-size: 2em;
+}
+.desc {
+    padding-top:1em;
+}
+.projtitle {
+    font-size: 1.3em;
 }
 </style>
 </head>
@@ -68,31 +78,35 @@ body {
         <div class="item">people.</div>
     </div>
 
-    <div id="/static/home.css"">
+    <div id="resume">
         My background is in backend engineering; I studied CS at Columbia University.
         <div id="resumelink">
-            <a href="/static/SarinaXieResume.pdf">See my full resume here.</a>
+            <a href="/static/home.css"">See my full resume here.</a>
         </div>      
     </div>
 
     <div id="projects">
         Projects
     </div>
-
-    <div id="nycdesc">
-        <a href="">   
-            nyc feed description
-        </a>
+    <div class="desc">
+        <div class="projtitle"><i>NYCfeed</i></div>
+        <div class="projdate"><i>2020</i></div> 
+        <div class="projdesc">
+            <i>Coming soon - see progress at <a href="https://github.com/sarinaxie/nycfeed">GitHub</a></i>
+        </div>
     </div>
 
-    <div id="fe3hdesc">
-        <a href="/fe3h">
-            2019                  
-            frontend built with javascript and flask, uses youtube api
-            backend built with flask-python, runs script to extract a frame from the video and process it
-            easy to use on mobile as well
-            hosted on aws ec2 instance
-        </a>
+    <div class="desc">
+        <div class="projtitle"><a href="/fe3h">FE3H Screenshot Maker</a></div>
+        <div class="projdate">2019</div>           
+        <div class="projdesc">
+            <div class="line">
+                A website that makes it easy to create fake screenshots from the video game Fire Emblem: 3 Houses.
+            </div>
+            <div class="line">
+                Built with JavaScript, Flask, and Python, and hosted on Amazon EC2.
+            </div>
+        </div>
     </div>
 </div>
 </body>
